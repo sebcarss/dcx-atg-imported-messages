@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import React from "react";
+import { SortDirection } from "@aws-amplify/datastore";
 import { ArrivalMessage } from "../models";
 import {
   getOverrideProps,
@@ -15,9 +16,11 @@ import ItemCard from "./ItemCard";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ItemCardCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const itemsPagination = { sort: (s) => s.timestamp(SortDirection.ASCENDING) };
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: ArrivalMessage,
+    pagination: itemsPagination,
   }).items;
   const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
   return (

@@ -1,23 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import { 
+  ItemCardCollection 
+} from './ui-components';
+import { DataStore } from '@aws-amplify/datastore';
+import { ArrivalMessage } from './models';
+
+const models = await DataStore.query(ArrivalMessage);
+console.log(models);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>G2 to ATG Imported Message Finder</h1>
+      <input></input>
+      <button>Search</button>
+      <ItemCardCollection />
     </div>
   );
 }
